@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ColorPanel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Image colorImage;
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        ColorObject.OnChangeColor += UpdateColor;
+    }
+    private void OnDisable()
+    {
+        ColorObject.OnChangeColor -= UpdateColor;
+    }
+    public void UpdateColor(Color newColor)
+    {
+        colorImage.color = newColor;
     }
 }

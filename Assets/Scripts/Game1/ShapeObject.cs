@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShapeObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private ColorShapeData shapeData;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    public static Action<Sprite> OnChangeShape;  
 
-    // Update is called once per frame
-    void Update()
+    private void SetUp()
     {
-        
+        spriteRenderer.sprite = shapeData.sprite;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OnChangeShape?.Invoke(shapeData.sprite);
+            Debug.Log("Cambiando de forma al player");
+        }
     }
 }
