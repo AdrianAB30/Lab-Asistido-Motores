@@ -17,6 +17,7 @@ public class LifePanel : MonoBehaviour
     }
     private void OnLifeUpdate(int life)
     {
+        Debug.Log("Nueva vida: " + life);
         textLife.text = life.ToString();
     }
 }

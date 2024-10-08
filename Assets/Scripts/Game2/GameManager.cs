@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
+            return;
         }
 
         Instance = this;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         playerLife = Math.Clamp(playerLife + modify, 0, 10);
 
+        Debug.Log("Vida modificada, nueva vida: " +playerLife);
         OnLifeUpdate?.Invoke(playerLife);
 
         ValidaeLife();
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckWin()
     {
-        Debug.Log("¡Has ganado!");
+        Debug.Log("Has ganado");
         OnWin?.Invoke();
     }
 
@@ -57,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerLife == 0)
         {
-            Debug.Log("¡Has perdido!");
+            Debug.Log("Has perdido");
             OnLose?.Invoke();
         }
     }

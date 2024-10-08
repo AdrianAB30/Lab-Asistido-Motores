@@ -17,7 +17,7 @@ public class ColorProperty : MonoBehaviour
     protected void SetUpColor(ColorData newColorData)
     {
         colorData = newColorData;
-
         _material.SetColor("_Color", colorData.color);
+        Debug.Log("Color del player actualizado a: " + colorData.color);
     }
 }
